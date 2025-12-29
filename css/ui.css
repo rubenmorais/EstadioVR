@@ -1,0 +1,10 @@
+#posicao {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-family: monospace;
+    z-index: 100;
+}
