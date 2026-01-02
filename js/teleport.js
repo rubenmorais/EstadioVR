@@ -7,7 +7,7 @@ function setupTeleportButtons() {
   // Evento CLICK (ativado após fuse de 2 segundos)
   clickableSphere.addEventListener('click', function() {
     const destX = 0;
-    const destY = 4;
+    const destY = 6.5;      
     const destZ = 0;
 
     rig.object3D.position.set(destX, destY, destZ);

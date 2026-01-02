@@ -5,21 +5,36 @@ const AREA_LIMIT = {
   minZ: -100,
   maxZ: 100,
   minY: 0,
-  maxY: 30
+  maxY: 45
 };
 
-let previousPos = { x: 0, y: 2.6, z: 45 }; // Posição inicial
+let previousPos = { x: 0, y: 2.6, z: 60 }; // Posição inicial
 
-// Função para verificar colisão com uma parede
+// Função de colisão para paredes 
 function checkWallCollision(x, y, z) {
-  for (let wall of WALLS) {
-    if (x >= wall.minX && x <= wall.maxX &&
-        z >= wall.minZ && z <= wall.maxZ &&
-        y >= wall.minY && y <= wall.maxY) {
-      return true; 
+    for (let wall of orientedWalls) {
+        // Verificar altura
+        if (y < wall.minY || y > wall.maxY) continue;
+        
+        // Vetor do centro da parede até o ponto
+        const toPointX = x - wall.centerX;
+        const toPointZ = z - wall.centerZ;
+        
+        // Projeção no vetor direção (comprimento da parede)
+        const projLength = toPointX * wall.dirX + toPointZ * wall.dirZ;
+        
+        // Projeção no vetor normal (espessura da parede)
+        const projThickness = toPointX * wall.normalX + toPointZ * wall.normalZ;
+        
+        // Verificar se está dentro da parede
+        const halfLength = wall.length / 2;
+        const halfThickness = wall.thickness / 2;
+        
+        if (Math.abs(projLength) <= halfLength && Math.abs(projThickness) <= halfThickness) {
+            return true;
+        }
     }
-  }
-  return false;
+    return false;
 }
 
 // Loop de atualização - verifica colisões constantemente

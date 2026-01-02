@@ -21,16 +21,16 @@
       <!-- Modelo do Estádio -->
       <a-entity 
         gltf-model="#stadium" 
-        position="0 1 0" 
+        position="0 1.5 0" 
         rotation="0 0 0" 
-        scale="10 10 10">
+        scale="15 15 15">
       </a-entity>
 
       <!-- Container para paredes (geradas dinamicamente) -->
       <a-entity id="walls-container"></a-entity>
 
       <!-- Botão de entrada -->
-      <a-entity id="teleport-button" position="0 2.6 34" 
+      <a-entity id="teleport-button" position="0 2.8 48.5" 
                 data-target-x="0" 
                 data-target-y="0" 
                 data-target-z="0">
@@ -84,10 +84,10 @@
 
       <!-- Placar com imagem -->
       <a-plane 
-        position="-0.65 11.2 -19"  
+        position="-0.975 16.8 -28.5"  
         rotation="18 0 0"   
-        width="3.5" 
-        height="2.75"
+        width="5.25" 
+        height="4.125"
         material="src: #placar-textura; transparent: true">
       </a-plane>
 
@@ -109,7 +109,7 @@
       <a-entity light="type: ambient; color: #ffffff; intensity: 0.5"></a-entity>
 
       <!-- Câmera e cursor -->
-      <a-entity id="rig" position="0 1 45">
+      <a-entity id="rig" position="0 1 60">
         <a-entity 
           id="camera"
           camera 
