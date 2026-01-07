@@ -11,7 +11,7 @@
   <body>
     <div id="posicao">x:0, y:0, z:0</div>
     
-    <a-scene background="color: #87CEEB">
+    <a-scene background="color: #87CEEB" day-night-system="initialMode: day">
       
       <a-assets>
         <a-asset-item id="stadium" src="assets/stadium.glb"></a-asset-item>
@@ -99,10 +99,48 @@
         color="#228B22">
       </a-plane>
 
-      <!-- Luz direcional (sol) -->
+      <!-- Luz solar -->
       <a-entity 
-        light="type: directional; color: #ffffff; intensity: 1" 
-        position="10 20 10">
+        id="sunLight"
+        light="type: directional; color: #ffffff; intensity: 2;"
+        position="30 50 30"
+        rotation="-45 45 0">
+      </a-entity>
+
+      <a-sphere
+        id="sun"
+        radius="4"
+        position="50 60 50"
+        material="color: #FFD700; emissive: #FFD700; emissiveIntensity: 1"
+      ></a-sphere>
+
+      <!-- Luz noturna -->
+      <a-sphere
+        id="moon"
+        radius="3"
+        position="-50 60 -50"
+        visible="false"
+        material="color: #ddddff; emissive: #ccccff; emissiveIntensity: 0.7"
+      ></a-sphere>
+
+      <!-- Lâmpada esquerda -->
+      <a-entity 
+        id="lamp-left"
+        position="-13 20 0"
+        rotation="-90 0 0"
+        light="type: spot; color: #ffffff; intensity: 70; distance: 50; angle: 170; decay: 1.5;"
+        look-at="0 0 0"
+        visible="false">
+      </a-entity>
+
+      <!-- Lâmpada direita -->
+      <a-entity 
+        id="lamp-right"
+        position="13 20 0"
+        rotation="-90 0 0"
+        light="type: spot; color: #ffffff; intensity: 70; distance: 50; angle: 170; decay: 1.5;"
+        look-at="0 0 0"
+        visible="false">
       </a-entity>
 
       <!-- Luz ambiente -->
@@ -139,6 +177,7 @@
       </a-entity>
     </a-scene>
     
+    <script src="js/day-night.js"></script>
     <script src="js/walls.js"></script>
     <script src="js/cursor.js"></script>
     <script src="js/teleport.js"></script>
