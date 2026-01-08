@@ -1,188 +1,269 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Estádio Virtual Interativo</title>
-    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@7.6.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-troika-text/dist/aframe-troika-text.min.js"></script>
-    <link rel="stylesheet" href="css/ui.css">
-  </head>
-  <body>
-    <div id="posicao">x:0, y:0, z:0</div>
-    
-    <a-scene background="color: #87CEEB" day-night-system="initialMode: day">
-      
-      <a-assets>
-        <a-asset-item id="stadium" src="assets/stadium.glb"></a-asset-item>
-        <img id="placar-textura" src="assets/placar.jpg">
-      </a-assets>
+<head>
+  <meta charset="UTF-8" />
+  <title>Estádio Virtual Interativo</title>
 
-      <!-- Modelo do Estádio -->
-      <a-entity 
-        gltf-model="#stadium" 
-        position="0 1.5 0" 
-        rotation="0 0 0" 
-        scale="15 15 15">
-      </a-entity>
+  <!-- A-FRAME -->
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@7.6.1/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-troika-text/dist/aframe-troika-text.min.js"></script>
 
-      <!-- Container para paredes (geradas dinamicamente) -->
-      <a-entity id="walls-container"></a-entity>
+  <link rel="stylesheet" href="css/ui.css" />
+</head>
 
-      <!-- Botão de entrada -->
-      <a-entity id="teleport-button" position="0 2.8 48.5" 
-                data-target-x="0" 
-                data-target-y="0" 
-                data-target-z="0">
-        
-        <!-- ESFERA CLICÁVEL  -->
-        <a-sphere 
-          class="clickable" 
-          radius="0.7" 
-          material="side: back; opacity: 0; transparent: true">
-        </a-sphere>
-        
-        <!-- ESFERA VISUAL -->
-        <a-sphere 
-          id="visual-sphere"
-          radius="0.5" 
-          color="#4CAF50" 
-          opacity="0.9"
-          material="transparent: true"
-          animation="property: scale; to: 1.2 1.2 1.2; dir: alternate; loop: true; dur: 1000; easing: easeInOutSine">
-        </a-sphere>
+<body>
+  <div id="posicao">x:0, y:0, z:0</div>
 
-        <a-plane
-          width="6.2"
-          height="1.3"
-          position="0 1.4 -0.05"
-          material="color: #000000; opacity: 0.55; transparent: true"
-          radius="0.15">
-        </a-plane>
+  <a-scene background="color: #87CEEB" day-night-system="initialMode: day">
 
-        <a-entity
-          troika-text="
-            value: Entrar no estádio;
-            fontSize: 0.6;
-            align: center;
-            color: #FFFFFF;
-          "
-          position="0 1.6 0">
-        </a-entity>
+    <a-assets>
+      <a-asset-item id="stadium" src="assets/stadium.glb"></a-asset-item>
+      <img id="placar-textura" src="assets/placar.jpg">
+      <!-- <audio id="aud-placar" src="assets/audio/placar.mp3" preload="auto"></audio> -->
+    </a-assets>
 
-        <a-entity
-          troika-text="
-            value: Olhe por 2 segundos;
-            fontSize: 0.32;
-            align: center;
-            color: #DDDDDD;
-          "
-          position="0 1.2 0">
-        </a-entity>
+    <!-- Modelo do Estádio -->
+    <a-entity
+      gltf-model="#stadium"
+      position="0 1.5 0"
+      rotation="0 0 0"
+      scale="15 15 15">
+    </a-entity>
 
-      </a-entity>
+    <!-- Container para paredes -->
+    <a-entity id="walls-container"></a-entity>
 
-      <!-- Placar com imagem -->
-      <a-plane 
-        position="-0.975 16.8 -28.5"  
-        rotation="18 0 0"   
-        width="5.25" 
-        height="4.125"
-        material="src: #placar-textura; transparent: true">
+    <!-- Botão de entrada -->
+    <a-entity id="teleport-button"
+      position="0 2.8 48.5"
+      data-target-x="0"
+      data-target-y="6.5"
+      data-target-z="0">
+
+      <!-- esfera clicável invisível -->
+      <a-sphere
+        class="clickable"
+        radius="0.7"
+        material="side: back; opacity: 0; transparent: true">
+      </a-sphere>
+
+      <!-- esfera visual -->
+      <a-sphere
+        id="visual-sphere"
+        radius="0.5"
+        color="#4CAF50"
+        opacity="0.9"
+        material="transparent: true"
+        animation="property: scale; to: 1.2 1.2 1.2; dir: alternate; loop: true; dur: 1000; easing: easeInOutSine">
+      </a-sphere>
+
+      <a-plane
+        width="6.2"
+        height="1.3"
+        position="0 1.4 -0.05"
+        material="color: #000000; opacity: 0.55; transparent: true">
       </a-plane>
 
-      <!-- Chão -->
-      <a-plane 
-        rotation="-90 0 0" 
-        width="200" 
-        height="200" 
-        color="#228B22">
+      <a-entity
+        troika-text="
+          value: Entrar no estádio;
+          fontSize: 0.6;
+          align: center;
+          color: #FFFFFF;
+        "
+        position="0 1.6 0">
+      </a-entity>
+
+      <a-entity
+        troika-text="
+          value: Olhe por 2 segundos;
+          fontSize: 0.32;
+          align: center;
+          color: #DDDDDD;
+        "
+        position="0 1.2 0">
+      </a-entity>
+    </a-entity>
+
+    <!-- Placar com imagem (no mundo) -->
+    <a-plane
+      position="-0.975 16.8 -28.5"
+      rotation="18 0 0"
+      width="5.25"
+      height="4.125"
+      material="src: #placar-textura; transparent: true">
+    </a-plane>
+
+    <!-- ========================= -->
+    <!--          POIs             -->
+    <!-- ========================= -->
+
+    <!-- POI: Placar -->
+    <a-sphere class="clickable"
+      position="-0.975 14 -26"
+      radius="0.35"
+      material="color: #4CAF50"
+      poi="title: Placar;
+           text: Este é o placar principal. Aqui são mostrados o resultado e o tempo de jogo.">
+    </a-sphere>
+
+    <!-- POI: Bancada -->
+    <a-sphere class="clickable"
+      position="8 10 -10"
+      radius="0.35"
+      material="color: #4CAF50"
+      poi="title: Bancada Central;
+           text: A bancada central oferece a melhor visibilidade do relvado e acesso às zonas VIP.">
+    </a-sphere>
+
+    <!-- POI: Relvado -->
+    <a-sphere class="clickable"
+      position="0 6 0"
+      radius="0.35"
+      material="color: #FFA500"
+      poi="title: Relvado;
+           text: Zona central do jogo. Aqui decorrem as principais ações da partida.">
+    </a-sphere>
+
+    <!-- Chão -->
+    <a-plane rotation="-90 0 0" width="200" height="200" color="#228B22"></a-plane>
+
+    <!-- Luz solar -->
+    <a-entity
+      id="sunLight"
+      light="type: directional; color: #ffffff; intensity: 2;"
+      position="30 50 30"
+      rotation="-45 45 0">
+    </a-entity>
+
+    <a-sphere
+      id="sun"
+      radius="4"
+      position="50 60 50"
+      material="color: #FFD700; emissive: #FFD700; emissiveIntensity: 1">
+    </a-sphere>
+
+    <!-- Lua -->
+    <a-sphere
+      id="moon"
+      radius="3"
+      position="-50 60 -50"
+      visible="false"
+      material="color: #ddddff; emissive: #ccccff; emissiveIntensity: 0.7">
+    </a-sphere>
+
+    <!-- Luzes noturnas -->
+    <a-entity
+      id="lamp-left"
+      position="-13 20 0"
+      rotation="-90 0 0"
+      light="type: spot; color: #ffffff; intensity: 70; distance: 50; angle: 170; decay: 1.5;"
+      look-at="0 0 0"
+      visible="false">
+    </a-entity>
+
+    <a-entity
+      id="lamp-right"
+      position="13 20 0"
+      rotation="-90 0 0"
+      light="type: spot; color: #ffffff; intensity: 70; distance: 50; angle: 170; decay: 1.5;"
+      look-at="0 0 0"
+      visible="false">
+    </a-entity>
+
+    <!-- Luz ambiente -->
+    <a-entity light="type: ambient; color: #ffffff; intensity: 0.5"></a-entity>
+
+    <!-- ========================= -->
+    <!--   PAINEL POI (NO MUNDO)   -->
+    <!-- ========================= -->
+    <!-- IMPORTANTE: sem scale fixo aqui (para não "bugar") -->
+    <a-entity id="poi-panel" position="0 0 0" visible="false">
+
+      <!-- Fundo -->
+      <a-plane id="poi-bg"
+        width="2.4" height="1.3"
+        material="color: #000; opacity: 0.90; transparent: true">
       </a-plane>
 
-      <!-- Luz solar -->
-      <a-entity 
-        id="sunLight"
-        light="type: directional; color: #ffffff; intensity: 2;"
-        position="30 50 30"
-        rotation="-45 45 0">
+      <!-- Título -->
+      <a-entity id="poi-title"
+        position="0 0.55 0.02"
+        troika-text="
+          value: Título;
+          fontSize: 0.20;
+          color: #ffffff;
+          maxWidth: 2.2;
+          anchorX: left;
+          anchorY: top;">
       </a-entity>
 
-      <a-sphere
-        id="sun"
-        radius="4"
-        position="50 60 50"
-        material="color: #FFD700; emissive: #FFD700; emissiveIntensity: 1"
-      ></a-sphere>
-
-      <!-- Luz noturna -->
-      <a-sphere
-        id="moon"
-        radius="3"
-        position="-50 60 -50"
-        visible="false"
-        material="color: #ddddff; emissive: #ccccff; emissiveIntensity: 0.7"
-      ></a-sphere>
-
-      <!-- Lâmpada esquerda -->
-      <a-entity 
-        id="lamp-left"
-        position="-13 20 0"
-        rotation="-90 0 0"
-        light="type: spot; color: #ffffff; intensity: 70; distance: 50; angle: 170; decay: 1.5;"
-        look-at="0 0 0"
-        visible="false">
+      <!-- Texto -->
+      <a-entity id="poi-text"
+        position="-0.05 0.15 0.02"
+        troika-text="
+          value: Texto;
+          fontSize: 0.14;
+          color: #e6e6e6;
+          maxWidth: 2.2;
+          lineHeight: 1.4;
+          anchorX: left;
+          anchorY: top;">
       </a-entity>
 
-      <!-- Lâmpada direita -->
-      <a-entity 
-        id="lamp-right"
-        position="13 20 0"
-        rotation="-90 0 0"
-        light="type: spot; color: #ffffff; intensity: 70; distance: 50; angle: 170; decay: 1.5;"
-        look-at="0 0 0"
-        visible="false">
-      </a-entity>
-
-      <!-- Luz ambiente -->
-      <a-entity light="type: ambient; color: #ffffff; intensity: 0.5"></a-entity>
-
-      <!-- Câmera e cursor -->
-      <a-entity id="rig" position="0 1 60">
-        <a-entity 
-          id="camera"
-          camera 
-          position="0 1.6 0" 
-          look-controls="pointerLockEnabled: false"
-          wasd-controls="acceleration: 30; fly: false">
-          <a-cursor 
-            id="cursor"
-            color="#00FF00"
-            opacity="0.8"
-            raycaster="objects: .clickable; far: 100"
-            fuse="true"
-            fuse-timeout="2000"
-            geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.015">
-            <!-- Barra de progresso no cursor -->
-            <a-ring 
-              id="cursor-progress"
-              radius-inner="0.01"
-              radius-outer="0.022"
-              theta-start="0"
-              theta-length="0"
-              color="#FFD700"
-              position="0 0 -0.01">
-            </a-ring>
-          </a-cursor>
+      <!-- BOTÃO FECHAR -->
+      <a-plane id="poi-close"
+        class="poi-ui clickable"
+        position="0 -0.30 0.03"
+        width="0.90" height="0.22"
+        material="color: #cc0000; opacity: 0.98; transparent: true">
+        <a-entity position="0 0 0.01"
+          troika-text="
+            value: FECHAR;
+            fontSize: 0.14;
+            align: center;
+            anchorY: middle;
+            color: #ffffff;">
         </a-entity>
-      </a-entity>
-    </a-scene>
-    
-    <script src="js/day-night.js"></script>
-    <script src="js/walls.js"></script>
-    <script src="js/cursor.js"></script>
-    <script src="js/teleport.js"></script>
-    <script src="js/movement.js"></script>
-    <script src="js/collision.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+      </a-plane>
+
+    </a-entity>
+    <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!--      RIG + CÂMARA         -->
+    <!-- ========================= -->
+    <a-entity id="rig" position="0 6.5 60">
+      <a-camera id="camera" wasd-controls look-controls>
+
+        <!-- Cursor -->
+        <a-cursor
+          fuse="true"
+          fuse-timeout="2000"
+          raycaster="objects: .clickable"
+          material="color: white">
+          <a-ring id="cursor-progress"
+            radius-inner="0.02"
+            radius-outer="0.03"
+            theta-length="0"
+            material="color: #00ff00">
+          </a-ring>
+        </a-cursor>
+
+      </a-camera>
+    </a-entity>
+
+  </a-scene>
+
+  <!-- Scripts -->
+  <script src="js/day-night.js"></script>
+  <script src="js/walls.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/teleport.js"></script>
+  <script src="js/movement.js"></script>
+  <script src="js/collision.js"></script>
+  <script src="js/poi.js"></script>
+  <script src="js/main.js"></script>
+</body>
 </html>
