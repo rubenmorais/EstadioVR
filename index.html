@@ -21,6 +21,7 @@
       <a-asset-item id="stadium" src="assets/stadium.glb"></a-asset-item>
       <img id="placar-textura" src="assets/placar.jpg">
       <a-asset-item id="chair" src="assets/chair.glb"></a-asset-item>
+      <a-asset-item id="auditorium" src="assets/auditorio.glb"></a-asset-item>
     </a-assets>
 
     <!-- Modelo do Estádio -->
@@ -29,6 +30,15 @@
       position="0 1.5 0"
       rotation="0 0 0"
       scale="15 15 15">
+    </a-entity>
+    
+    <!-- Modelo do auditorio -->
+    <a-entity 
+      gltf-model="#auditorium" 
+      position="92 0 -92" 
+      rotation="0 0 0" 
+      scale="2 2 2"
+      visible="false">
     </a-entity>
 
     <!-- Container para paredes -->

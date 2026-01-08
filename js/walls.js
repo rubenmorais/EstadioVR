@@ -47,6 +47,23 @@ const orientedWalls = [
     { centerX: 9.36, centerZ: -4.27, dirX: -0.0154, dirZ: 0.9999, normalX: -0.9999, normalZ: -0.0154, length: 6.08, thickness: 1, minY: 0, maxY: 9, color: '#00ff00' },
     { centerX: 9.30, centerZ: 5.82, dirX: -0.0032, dirZ: 1.0000, normalX: -1.0000, normalZ: -0.0032, length: 6.19, thickness: 1, minY: 0, maxY: 9, color: '#00ff00' },
     { centerX: 9.30, centerZ: 5.82, dirX: 0.0032, dirZ: -1.0000, normalX: 1.0000, normalZ: 0.0032, length: 6.19, thickness: 1, minY: 0, maxY: 9, color: '#00ff00' },
+    //Auditório
+    { centerX: 101.14, centerZ: -94.58, dirX: 0.0048, dirZ: 1.0000, normalX: -1.0000, normalZ: 0.0048, length: 12.19, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 93.63, centerZ: -88.45, dirX: -1.0000, dirZ: 0.0038, normalX: -0.0038, normalZ: -1.0000, length: 15.08, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 86.11, centerZ: -86.71, dirX: 0.0148, dirZ: 0.9999, normalX: -0.9999, normalZ: 0.0148, length: 3.43, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 84.54, centerZ: -84.88, dirX: -0.9973, dirZ: 0.0733, normalX: -0.0733, normalZ: -0.9973, length: 3.19, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 82.96, centerZ: -92.60, dirX: 0.0009, dirZ: -1.0000, normalX: 1.0000, normalZ: 0.0009, length: 15.69, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    //Cadeiras do auditório
+    { centerX: 89.32, centerZ: -94.25, dirX: -0.0065, dirZ: -1.0000, normalX: 1.0000, normalZ: -0.0065, length: 8.44, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 93.40, centerZ: -98.57, dirX: 0.9997, dirZ: -0.0246, normalX: 0.0246, normalZ: 0.9997, length: 8.23, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 97.55, centerZ: -94.45, dirX: 0.0088, dirZ: 1.0000, normalX: -1.0000, normalZ: 0.0088, length: 8.45, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 93.52, centerZ: -90.15, dirX: -0.9998, dirZ: 0.0175, normalX: -0.0175, normalZ: -0.9998, length: 8.14, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    //Mesas do auditório
+    { centerX: 85.33, centerZ: -93.52, dirX: -0.9943, dirZ: 0.1070, normalX: -0.1070, normalZ: -0.9943, length: 1.35, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 84.65, centerZ: -95.54, dirX: -0.0054, dirZ: -1.0000, normalX: 1.0000, normalZ: -0.0054, length: 4.19, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 85.23, centerZ: -97.72, dirX: 0.9906, dirZ: -0.1367, normalX: 0.1367, normalZ: 0.9906, length: 1.19, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 85.82, centerZ: -95.67, dirX: -0.0001, dirZ: 1.0000, normalX: -1.0000, normalZ: -0.0001, length: 4.26, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 85.3, centerZ: -90.9, dirX: -0.0001, dirZ: 1.0000, normalX: -1.0000, normalZ: -0.0001, length: 1.1, thickness: 1.15, minY: 0, maxY: 9, color: '#00ff00' },
 ];
 
 // Criar paredes  
