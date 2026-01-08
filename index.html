@@ -20,7 +20,7 @@
     <a-assets>
       <a-asset-item id="stadium" src="assets/stadium.glb"></a-asset-item>
       <img id="placar-textura" src="assets/placar.jpg">
-      <!-- <audio id="aud-placar" src="assets/audio/placar.mp3" preload="auto"></audio> -->
+      <a-asset-item id="chair" src="assets/chair.glb"></a-asset-item>
     </a-assets>
 
     <!-- Modelo do Estádio -->
@@ -33,6 +33,9 @@
 
     <!-- Container para paredes -->
     <a-entity id="walls-container"></a-entity>
+
+    <!-- Container para cadeiras (geradas dinamicamente) -->
+    <a-entity id="chairs-container"></a-entity>
 
     <!-- Botão de entrada -->
     <a-entity id="teleport-button"
@@ -259,6 +262,7 @@
   <!-- Scripts -->
   <script src="js/day-night.js"></script>
   <script src="js/walls.js"></script>
+  <script src="js/chairs.js"></script>
   <script src="js/cursor.js"></script>
   <script src="js/teleport.js"></script>
   <script src="js/movement.js"></script>

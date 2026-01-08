@@ -42,6 +42,11 @@ const orientedWalls = [
     { centerX: 0.23, centerZ: 11.63, dirX: -1.0000, dirZ: 0.0056, normalX: -0.0056, normalZ: -1.0000, length: 6.23, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
     { centerX: -2.86, centerZ: 10.13, dirX: 0.0154, dirZ: -0.9999, normalX: 0.9999, normalZ: 0.0154, length: 3.05, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
     { centerX: 0.25, centerZ: 8.56, dirX: 0.9999, dirZ: -0.0158, normalX: 0.0158, normalZ: 0.9999, length: 6.18, thickness: 0.2, minY: 0, maxY: 9, color: '#00ff00' },
+    // Bancos de suplentes
+    { centerX: 9.36, centerZ: -4.27, dirX: 0.0154, dirZ: -0.9999, normalX: 0.9999, normalZ: 0.0154, length: 6.08, thickness: 1, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 9.36, centerZ: -4.27, dirX: -0.0154, dirZ: 0.9999, normalX: -0.9999, normalZ: -0.0154, length: 6.08, thickness: 1, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 9.30, centerZ: 5.82, dirX: -0.0032, dirZ: 1.0000, normalX: -1.0000, normalZ: -0.0032, length: 6.19, thickness: 1, minY: 0, maxY: 9, color: '#00ff00' },
+    { centerX: 9.30, centerZ: 5.82, dirX: 0.0032, dirZ: -1.0000, normalX: 1.0000, normalZ: 0.0032, length: 6.19, thickness: 1, minY: 0, maxY: 9, color: '#00ff00' },
 ];
 
 // Criar paredes  
