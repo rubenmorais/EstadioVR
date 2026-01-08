@@ -63,6 +63,19 @@ function updateLoop() {
   let newX = worldX;
   let newZ = worldZ;
   let newY = worldY;
+  
+  const MAX_STEP = 0.20;
+
+  const dx = newX - previousPos.x;
+  const dz = newZ - previousPos.z;
+
+  const dist = Math.sqrt(dx * dx + dz * dz);
+
+  if (dist > MAX_STEP) {
+    const ratio = MAX_STEP / dist;
+    newX = previousPos.x + dx * ratio;
+    newZ = previousPos.z + dz * ratio;
+  }
 
   // Testar colisão por eixo separadamente 
   const collidesAtNewPos = checkWallCollision(newX, newY, newZ);
