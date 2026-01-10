@@ -49,31 +49,39 @@ AFRAME.registerComponent('poi', {
     // Abrir painel ao clicar no POI
     this.el.addEventListener('click', () => this.openPanel());
 
-    // Fechar painel no botão
-    if (this.closeBtn && !this.closeBtn.__poiCloseHooked) {
-      this.closeBtn.__poiCloseHooked = true;
+    // Configurar listener global do botão fechar 
+    if (!window.__poiCloseSetup) {
+      window.__poiCloseSetup = true;
+      
+      if (this.closeBtn) {
+        this.closeBtn.addEventListener('click', () => {
+          const activePoi = window.__activePoiComponent;
+          if (activePoi) {
+            activePoi.closePanel();
+          }
+        });
 
-      this.closeBtn.addEventListener('click', () => {
-        this.closePanel();
-      });
+        this.closeBtn.addEventListener('mouseenter', () => {
+          if (typeof startCursorProgress === 'function') startCursorProgress();
+        });
 
-      this.closeBtn.addEventListener('mouseenter', () => {
-        if (typeof startCursorProgress === 'function') startCursorProgress();
-      });
-
-      this.closeBtn.addEventListener('mouseleave', () => {
-        if (typeof stopCursorProgress === 'function') stopCursorProgress();
-      });
+        this.closeBtn.addEventListener('mouseleave', () => {
+          if (typeof stopCursorProgress === 'function') stopCursorProgress();
+        });
+      }
     }
 
     // Fechar com ESC
-    if (!window.__poiEscHooked) {
-      window.__poiEscHooked = true;
+    if (!window.__poiEscSetup) {
+      window.__poiEscSetup = true;
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           const p = document.querySelector('#poi-panel');
           if (p && p.getAttribute('visible')) {
-            self.closePanel();
+            const activePoi = window.__activePoiComponent;
+            if (activePoi) {
+              activePoi.closePanel();
+            }
           }
         }
       });
@@ -82,6 +90,12 @@ AFRAME.registerComponent('poi', {
 
   openPanel: function () {
     if (!this.panel || !this.titleEl || !this.textEl || !this.camera) return;
+
+    // Registar este POI como o ativo
+    window.__activePoiComponent = this;
+
+    // Tornar a bola invisível
+    this.el.setAttribute('visible', false);
 
     // Preencher texto
     this.titleEl.setAttribute('troika-text', { value: this.data.title });
@@ -146,6 +160,12 @@ AFRAME.registerComponent('poi', {
   closePanel: function () {
     if (!this.panel) return;
 
+    // Tornar a bola visível novamente
+    this.el.setAttribute('visible', true);
+
+    // Limpar o POI ativo
+    window.__activePoiComponent = null;
+
     // Parar áudio
     document.querySelectorAll('audio').forEach(a => {
       try {
@@ -165,10 +185,3 @@ AFRAME.registerComponent('poi', {
     if (typeof resetCursorProgress === 'function') resetCursorProgress();
   }
 });
-
-
-
-
-
-
-

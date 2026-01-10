@@ -22,6 +22,7 @@
       <img id="placar-textura" src="assets/placar.jpg">
       <a-asset-item id="chair" src="assets/chair.glb"></a-asset-item>
       <a-asset-item id="auditorium" src="assets/auditorio.glb"></a-asset-item>
+      <a-asset-item id="human" src="assets/persona_formal.glb"></a-asset-item>
     </a-assets>
 
     <!-- Modelo do Estádio -->
@@ -48,34 +49,33 @@
     <a-entity id="chairs-container"></a-entity>
 
     <!-- Botão de entrada -->
-    <a-entity id="teleport-button"
-      position="0 2.8 48.5"
-      data-target-x="0"
-      data-target-y="6.5"
-      data-target-z="0">
+    <a-entity id="teleport-button" position="0 2.8 48.5" 
+              data-target-x="0" 
+              data-target-y="0" 
+              data-target-z="0">
 
-      <!-- esfera clicável invisível -->
-      <a-sphere
+      <a-box
         class="clickable"
-        radius="0.7"
-        material="side: back; opacity: 0; transparent: true">
-      </a-sphere>
+        width="1"
+        height="2"
+        depth="0.5"
+        position="0 -0.5 0"
+        material="opacity: 0; transparent: true; color: #0000FF">
+      </a-box>
 
-      <!-- esfera visual -->
-      <a-sphere
-        id="visual-sphere"
-        radius="0.5"
-        color="#4CAF50"
-        opacity="0.9"
-        material="transparent: true"
-        animation="property: scale; to: 1.2 1.2 1.2; dir: alternate; loop: true; dur: 1000; easing: easeInOutSine">
-      </a-sphere>
+      <a-entity 
+        gltf-model="#human" 
+        position="0 0.4 0" 
+        rotation="0 0 0" 
+        scale="10 10 10">
+      </a-entity>
 
       <a-plane
         width="6.2"
         height="1.3"
         position="0 1.4 -0.05"
-        material="color: #000000; opacity: 0.55; transparent: true">
+        material="color: #000000; opacity: 0.55; transparent: true"
+        radius="0.15">
       </a-plane>
 
       <a-entity
@@ -132,9 +132,9 @@
 
     <!-- POI: Relvado -->
     <a-sphere class="clickable"
-      position="0 6 0"
+      position="0 9 0"
       radius="0.35"
-      material="color: #FFA500"
+      material="color: #4CAF50"
       poi="title: Relvado;
            text: Zona central do jogo. Aqui decorrem as principais ações da partida.">
     </a-sphere>
@@ -207,9 +207,7 @@
           value: Título;
           fontSize: 0.20;
           color: #ffffff;
-          maxWidth: 2.2;
-          anchorX: left;
-          anchorY: top;">
+          maxWidth: 2.2;">
       </a-entity>
 
       <!-- Texto -->
@@ -220,9 +218,7 @@
           fontSize: 0.14;
           color: #e6e6e6;
           maxWidth: 2.2;
-          lineHeight: 1.4;
-          anchorX: left;
-          anchorY: top;">
+          lineHeight: 1.4;">
       </a-entity>
 
       <!-- BOTÃO FECHAR -->
@@ -236,7 +232,6 @@
             value: FECHAR;
             fontSize: 0.14;
             align: center;
-            anchorY: middle;
             color: #ffffff;">
         </a-entity>
       </a-plane>
@@ -247,7 +242,7 @@
     <!-- ========================= -->
     <!--      RIG + CÂMARA         -->
     <!-- ========================= -->
-    <a-entity id="rig" position="0 6.5 60">
+    <a-entity id="rig" position="0 1 60">
       <a-camera id="camera" wasd-controls look-controls>
 
         <!-- Cursor -->
