@@ -1,43 +1,37 @@
 // Sistema de teleporte
 function setupTeleportButtons() {
-  const clickableSphere = document.querySelector('.clickable');
-  const visualSphere = document.querySelector('#visual-sphere');
   const rig = document.querySelector('#rig');
-  
-  // Evento CLICK (ativado após fuse de 2 segundos)
-  clickableSphere.addEventListener('click', function() {
-    const destX = 0;
-    const destY = 6.5;      
-    const destZ = 0;
+  const camera = document.querySelector('#camera');
+  const clickables = document.querySelectorAll('.clickable');
 
-    rig.object3D.position.set(destX, destY, destZ);
+  clickables.forEach(clickable => {
 
-    const cameraEntity = document.querySelector('#camera');
-    cameraEntity.object3D.position.set(0, 1.6, 0); 
+    clickable.addEventListener('mouseenter', startCursorProgress);
+    clickable.addEventListener('mouseleave', stopCursorProgress);
 
-    // Atualizar posição anterior para o seu sistema de colisão
-    previousPos = { x: destX, y: destY, z: destZ };
+    clickable.addEventListener('click', function () {
+      const x = parseFloat(this.dataset.targetX);
+      const y = parseFloat(this.dataset.targetY);
+      const z = parseFloat(this.dataset.targetZ);
+      const destination = this.dataset.destination;
 
-    // Reset ao progresso do cursor
-    resetCursorProgress();
-  });
-  
-  // Efeito quando começa a olhar (mouseenter)
-  clickableSphere.addEventListener('mouseenter', function() {
-    startCursorProgress();
-    
-    if (visualSphere) {
-      visualSphere.setAttribute('color', '#66FF66');
-    }
-  });
-  
-  // Efeito quando para de olhar (mouseleave)
-  clickableSphere.addEventListener('mouseleave', function() {
-    stopCursorProgress();
-    
-    if (visualSphere) {
-      visualSphere.setAttribute('color', '#4CAF50');
-      visualSphere.setAttribute('scale', '1 1 1');
-    }
+      if ([x, y, z].some(isNaN)) return;
+
+      rig.object3D.position.set(x, y, z);
+      camera.object3D.position.set(0, 1.6, 0);
+
+      if (typeof previousPos !== 'undefined') {
+        previousPos = { x, y, z };
+      }
+
+      resetCursorProgress();
+
+      document.dispatchEvent(new CustomEvent('player-teleported', {
+        detail: { x, y, z, destination }
+      }));
+    });
   });
 }
+
+window.addEventListener('DOMContentLoaded', setupTeleportButtons);
+

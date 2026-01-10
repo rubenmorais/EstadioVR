@@ -4,3 +4,7 @@ document.querySelector('a-scene').addEventListener('loaded', () => {
   setupTeleportButtons();
   updateLoop();  
 });
+function toggleControls() {
+  const panel = document.getElementById('controls-help');
+  panel.classList.toggle('show');
+}

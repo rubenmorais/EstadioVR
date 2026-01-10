@@ -21,8 +21,12 @@
       <a-asset-item id="stadium" src="assets/stadium.glb"></a-asset-item>
       <img id="placar-textura" src="assets/placar.jpg">
       <a-asset-item id="chair" src="assets/chair.glb"></a-asset-item>
-      <a-asset-item id="auditorium" src="assets/auditorio.glb"></a-asset-item>
+      <a-asset-item id="auditorium-model" src="assets/auditorio.glb"></a-asset-item>
       <a-asset-item id="human" src="assets/persona_formal.glb"></a-asset-item>
+      <a-asset-item id="football_ball" src="assets/football_ball.glb"></a-asset-item>
+      <audio id="kick-sound" src="assets/sounds/soccer-ball-kick.mp3"></audio>
+      <audio id="goal-sound" src="assets/sounds/goal.mp3"></audio>
+      <audio id="cantico-audio" src="assets/sounds/HinoBenfica.mp3"></audio>
     </a-assets>
 
     <!-- Modelo do Estádio -->
@@ -32,14 +36,13 @@
       rotation="0 0 0"
       scale="15 15 15">
     </a-entity>
-    
-    <!-- Modelo do auditorio -->
+
+    <!-- Modelo da bola -->
     <a-entity 
-      gltf-model="#auditorium" 
-      position="92 0 -92" 
-      rotation="0 0 0" 
-      scale="2 2 2"
-      visible="false">
+      id="ball"
+      gltf-model="#football_ball" 
+      position="0 6.95 0.2" 
+      scale="0.005 0.005 0.005">
     </a-entity>
 
     <!-- Container para paredes -->
@@ -48,19 +51,19 @@
     <!-- Container para cadeiras (geradas dinamicamente) -->
     <a-entity id="chairs-container"></a-entity>
 
-    <!-- Botão de entrada -->
-    <a-entity id="teleport-button" position="0 2.8 48.5" 
-              data-target-x="0" 
-              data-target-y="0" 
-              data-target-z="0">
-
+    <!-- Botão de entrada no estadio -->
+    <a-entity id="teleport-button" position="0 2.8 48.5">
       <a-box
         class="clickable"
         width="1"
         height="2"
         depth="0.5"
         position="0 -0.5 0"
-        material="opacity: 0; transparent: true; color: #0000FF">
+        material="opacity: 0; transparent: true"
+        data-target-x="0"
+        data-target-y="6.5"
+        data-target-z="0"
+        data-destination="stadium">
       </a-box>
 
       <a-entity 
@@ -99,6 +102,171 @@
       </a-entity>
     </a-entity>
 
+    <!-- Botão de saida do estadio -->
+    <a-entity position="9 8.7 0.3" rotation="0 -90 0">
+      <a-box
+        class="clickable"
+        width="1"
+        height="2"
+        depth="0.5"
+        position="0 -0.5 0"
+        material="opacity: 0; transparent: true"
+        data-target-x="4"
+        data-target-y="1"
+        data-target-z="52"
+        data-destination="outside">
+      </a-box>
+
+      <a-entity 
+        gltf-model="#human"
+        position="0 0.4 0"
+        scale="12 12 12">
+      </a-entity>
+
+      <a-plane
+        width="3"
+        height="0.7"
+        position="0 1.3 -0.05"  
+        material="color: #000000; opacity: 0.7"
+        radius="0.1">
+      </a-plane>
+
+      <!-- TEXTO CENTRADO -->
+      <a-entity
+        troika-text="
+          value: Sair do Estádio;
+          fontSize: 0.35;
+          align: center;
+          color: #FFFFFF;
+          anchor: center;
+          baseline: center;"
+        position="0 1.3 0">
+      </a-entity>
+    </a-entity>
+
+    <!-- Placa Sala de Imprensa -->
+    <a-entity position="12 1.5 46" rotation="0 5 0">
+      <a-cylinder 
+        position="0 0.25 0"    
+        radius="0.07" 
+        height="1.5" 
+        color="#555555"
+      ></a-cylinder>
+
+      <a-entity position="0 1.5 0"> 
+        <a-box 
+          width="2.7" 
+          height="1" 
+          depth="0.1" 
+          color="#222222" 
+          opacity="0.9"
+          position="0 0 0">
+        </a-box>
+        <a-entity position="0.2 0 0.11"> 
+          <a-triangle
+            vertex-a="0.2 0.25 0"
+            vertex-b="0.2 -0.25 0"
+            vertex-c="0.7 0 0"
+            color="#ffffff"
+          ></a-triangle>
+          <a-entity 
+            position="-0.15 0 0" 
+            troika-text="
+              value: Sala de Imprensa;
+              fontSize: 0.25;
+              color: #ffffff;
+              align: left;
+              maxWidth: 2;">
+          </a-entity>
+        </a-entity>
+      </a-entity>
+    </a-entity>
+    
+    <!-- Botão de entrada no auditorio -->
+    <a-entity position="35 2.8 10">
+      <a-box
+        class="clickable"
+        width="1"
+        height="2"
+        depth="0.5"
+        position="0 -0.5 0"
+        material="opacity: 0; transparent: true"
+        data-target-x="84.58"
+        data-target-y="1"
+        data-target-z="-87"
+        data-destination="auditorium">
+      </a-box>
+
+      <a-entity 
+        gltf-model="#human"
+        position="0 0.4 0"
+        scale="10 10 10">
+      </a-entity>
+
+      <a-entity
+        troika-text="
+          value: Sala de Imprensa;
+          fontSize: 0.35;
+          align: center;
+          color: #FFFFFF;"
+        position="0 1.1 0">
+      </a-entity>
+    </a-entity>
+
+    <a-entity id="auditorium-container" visible="false">
+      <!-- Modelo do Auditorio -->
+      <a-entity 
+        id="auditorium"
+        gltf-model="#auditorium-model" 
+        position="92 0 -92" 
+        rotation="0 0 0" 
+        scale="2 2 2">
+      </a-entity>
+
+      <!-- Botão de saida no auditorio -->
+      <a-entity position="84.5 2.6 -85.84" rotation="0 180 0">
+
+        <a-box
+          class="clickable"
+          width="1"
+          height="2"
+          depth="0.5"
+          position="0 -0.5 0"
+          material="opacity: 0; transparent: true"
+          data-target-x="37"
+          data-target-y="1"
+          data-target-z="16"
+          data-destination="outside">
+        </a-box>
+
+        <a-entity 
+          gltf-model="#human"
+          position="0 0.4 0"
+          scale="14 14 14">
+        </a-entity>
+
+        <a-plane
+          width="3"
+          height="0.7"
+          position="0 1.3 -0.05"  
+          material="color: #000000; opacity: 0.7"
+          radius="0.1">
+        </a-plane>
+
+        <!-- TEXTO CENTRADO -->
+        <a-entity
+          troika-text="
+            value: Sair do Auditório;
+            fontSize: 0.35;
+            align: center;
+            color: #FFFFFF;
+            anchor: center;
+            baseline: center;"
+          position="0 1.3 0">
+        </a-entity>
+      </a-entity>
+    </a-entity>
+
     <!-- Placar com imagem (no mundo) -->
     <a-plane
       position="-0.975 16.8 -28.5"
@@ -113,30 +281,40 @@
     <!-- ========================= -->
 
     <!-- POI: Placar -->
-    <a-sphere class="clickable"
+    <a-sphere id="poi-placar" class="clickable"
       position="-0.975 14 -26"
       radius="0.35"
       material="color: #4CAF50"
       poi="title: Placar;
-           text: Este é o placar principal. Aqui são mostrados o resultado e o tempo de jogo.">
+          text: Este é o placar principal. Aqui são mostrados o resultado e o tempo de jogo.">
     </a-sphere>
 
     <!-- POI: Bancada -->
-    <a-sphere class="clickable"
-      position="8 10 -10"
+    <a-sphere id="poi-bancada" class="clickable"
+      position="-11 12 0"
       radius="0.35"
       material="color: #4CAF50"
       poi="title: Bancada Central;
-           text: A bancada central oferece a melhor visibilidade do relvado e acesso às zonas VIP.">
+          text: A bancada central oferece a melhor visibilidade do relvado e acesso às zonas VIP.">
     </a-sphere>
 
     <!-- POI: Relvado -->
-    <a-sphere class="clickable"
+    <a-sphere id="poi-relvado" class="clickable"
       position="0 9 0"
       radius="0.35"
       material="color: #4CAF50"
       poi="title: Relvado;
-           text: Zona central do jogo. Aqui decorrem as principais ações da partida.">
+          text: Zona central do jogo. Aqui decorrem as principais ações da partida.">
+    </a-sphere>
+
+    <!-- POI: Cântico -->
+    <a-sphere id="poi-cantico" class="clickable"
+      position="8 10 -10"
+      radius="0.35"
+      material="color: #4CAF50"
+      poi="title: Cântico dos Adeptos;
+          text: Os cânticos dos adeptos refletem a paixão e a tradição do clube.;
+          audio: #cantico-audio">
     </a-sphere>
 
     <!-- Chão -->
@@ -191,7 +369,6 @@
     <!-- ========================= -->
     <!--   PAINEL POI (NO MUNDO)   -->
     <!-- ========================= -->
-    <!-- IMPORTANTE: sem scale fixo aqui (para não "bugar") -->
     <a-entity id="poi-panel" position="0 0 0" visible="false">
 
       <!-- Fundo -->
@@ -261,18 +438,36 @@
 
       </a-camera>
     </a-entity>
-
   </a-scene>
 
+  <button class="btn-toggle" onclick="toggleControls()">❓Ajuda</button>
+
+  <div id="controls-help">
+    <h4>Controlos</h4>
+    <ul>
+      <li><strong>Rato:</strong> Olhar à volta</li>
+      <li><strong>WASD:</strong> Andar</li>
+      <li><strong>Shift:</strong> Correr</li>
+      <li><strong>Olhar:</strong> Mantém o olhar nas esferas/pessoas por 2 segundos</li>
+      <li><strong>Espaço:</strong> Chutar a bola</li>
+      <li><strong>V:</strong> Ativar/Desativar controlo por voz</li>
+      <li><strong>M:</strong> Alternar modo dia/noite</li>
+      <li><strong>ESC:</strong> Fechar painéis informativos</li>
+    </ul>
+  </div>
+  
   <!-- Scripts -->
   <script src="js/day-night.js"></script>
   <script src="js/walls.js"></script>
   <script src="js/chairs.js"></script>
   <script src="js/cursor.js"></script>
   <script src="js/teleport.js"></script>
+  <script src="js/auditorium.js"></script>
+  <script src="js/ball.js"></script>
   <script src="js/movement.js"></script>
   <script src="js/collision.js"></script>
   <script src="js/poi.js"></script>
+  <script src="js/voice-control.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -12,6 +12,12 @@ AFRAME.registerComponent('day-night-system', {
         this.lampRight = document.getElementById('lamp-right');
         this.setupLighting();
         this.createToggleButton();
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'm') {
+                this.toggleMode();
+            }
+        });
     },
 
     setupLighting: function() {
@@ -145,7 +151,7 @@ AFRAME.registerComponent('day-night-system', {
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                padding: 12px 24px;
+                padding: 12px 15px;
                 background: rgba(0, 0, 0, 0.7);
                 color: white;
                 border: 2px solid #ffffff;
