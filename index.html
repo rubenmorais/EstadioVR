@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div id="posicao">x:0, y:0, z:0</div>
+  <div id="posicao" style="display: none;">x:0, y:0, z:0</div>
 
   <a-scene background="color: #87CEEB" day-night-system="initialMode: day">
 
@@ -419,7 +419,7 @@
     <!-- ========================= -->
     <!--      RIG + CÂMARA         -->
     <!-- ========================= -->
-    <a-entity id="rig" position="0 1 60">
+    <a-entity id="rig" position="-1 1 60">
       <a-camera id="camera" wasd-controls look-controls>
 
         <!-- Cursor -->
@@ -452,6 +452,7 @@
       <li><strong>Espaço:</strong> Chutar a bola</li>
       <li><strong>V:</strong> Ativar/Desativar controlo por voz</li>
       <li><strong>M:</strong> Alternar modo dia/noite</li>
+      <li><strong>T:</strong> Iniciar visita guiada</li>
       <li><strong>ESC:</strong> Fechar painéis informativos</li>
     </ul>
   </div>
@@ -468,6 +469,7 @@
   <script src="js/collision.js"></script>
   <script src="js/poi.js"></script>
   <script src="js/voice-control.js"></script>
+  <script src="js/guided-tour.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -126,7 +126,6 @@ AFRAME.registerComponent('poi', {
     const cameraWorldPos = new THREE.Vector3();
     this.camera.object3D.getWorldPosition(cameraWorldPos);
 
-    // Offset consistente (ajusta se quiseres)
     const offset = new THREE.Vector3(0.8, 0.4, 0.3);
     const panelPos = poiWorldPos.clone().add(offset);
 
@@ -135,14 +134,9 @@ AFRAME.registerComponent('poi', {
     // Olhar para a câmara
     this.panel.object3D.lookAt(cameraWorldPos);
 
-    // ========= ESCALA DINÂMICA (RESOLVE "PLACAR PEQUENO") =========
-    // Quanto mais longe, maior fica o painel (com limites)
+    // Quanto mais longe, maior fica o painel 
     const distance = panelPos.distanceTo(cameraWorldPos);
 
-    // Ajusta estes 3 valores se quiseres mais/menos tamanho:
-    // - multiplicador: 0.18
-    // - mínimo: 1.6
-    // - máximo: 3.5
     const scaleFactor = THREE.MathUtils.clamp(distance * 0.18, 1.6, 3.5);
     this.panel.object3D.scale.set(scaleFactor, scaleFactor, scaleFactor);
 

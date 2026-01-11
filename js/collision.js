@@ -8,7 +8,7 @@ const AREA_LIMIT = {
   maxY: 45
 };
 
-let previousPos = { x: 0, y: 2.6, z: 60 }; // Posição inicial
+let previousPos = { x: -1, y: 2.6, z: 60 }; // Posição inicial
 
 // Função de colisão para paredes 
 function checkWallCollision(x, y, z) {

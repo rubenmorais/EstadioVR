@@ -22,7 +22,7 @@ const orientedWalls = [
     //Paredes interiores do estádio
     { centerX: -9.19, centerZ: 10.38, dirX: -0.1316, dirZ: -0.9913, normalX: 0.9913, normalZ: -0.1316, length: 6.78, thickness: 0.2, minY: 6, maxY: 15, color: '#00ff00' },
     { centerX: -9.64, centerZ: -0.01, dirX: 0.0000, dirZ: -1.0000, normalX: 1.0000, normalZ: 0.0000, length: 14.05, thickness: 0.2, minY: 6, maxY: 10, color: '#00ff00' },
-    { centerX: -9.22, centerZ: -10.37, dirX: 0.1251, dirZ: -0.9921, normalX: 0.9921, normalZ: 0.1251, length: 6.73, thickness: 0.2, minY: 6, maxY: 15, color: '#00ff00' },
+    { centerX: -9.22, centerZ: -10.37, dirX: 0.1251, dirZ: -0.9921, normalX: 0.9921, normalZ: 0.1251, length: 6.73, thickness: 0.2, minY: 6, maxY: 13, color: '#00ff00' },
     { centerX: -6.31, centerZ: -15.09, dirX: 0.8743, dirZ: -0.4854, normalX: 0.4854, normalZ: 0.8743, length: 5.69, thickness: 0.2, minY: 6, maxY: 9, color: '#00ff00' },
     { centerX: 0.08, centerZ: -16.45, dirX: 1.0000, dirZ: 0.0049, normalX: -0.0049, normalZ: 1.0000, length: 7.80, thickness: 0.2, minY: 6, maxY: 9, color: '#00ff00' },
     { centerX: 6.31, centerZ: -15.08, dirX: 0.8664, dirZ: 0.4993, normalX: -0.4993, normalZ: 0.8664, length: 5.38, thickness: 0.2, minY: 6, maxY: 9, color: '#00ff00' },
